@@ -2,9 +2,14 @@ package uk.lewisl.economy.data;
 
 import org.bukkit.entity.Player;
 import uk.lewisl.economy.Economy;
+import uk.lewisl.economy.utils.Maths;
 
 import java.util.UUID;
 
+/**
+ * @author lewis
+ * @since 12/11/2022
+ */
 public class PlayerBalance {
     UUID playerUUID;
     long playerBalance;
@@ -21,6 +26,10 @@ public class PlayerBalance {
 
     public long getPlayerBalance() {
         return playerBalance;
+    }
+    public String getPlayerStringBalance(){
+      return Maths.longComma(playerBalance);
+
     }
 
 

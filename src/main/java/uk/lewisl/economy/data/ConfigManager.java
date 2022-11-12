@@ -10,6 +10,10 @@ import java.io.File;
 import java.io.IOException;
 import java.util.logging.Level;
 
+/**
+ * @author lewis
+ * @since 12/11/2022
+ */
 public class ConfigManager {
 
     private FileConfiguration config;

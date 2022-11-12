@@ -12,6 +12,11 @@ import org.bukkit.util.Vector;
 import uk.lewisl.economy.Economy;
 import uk.lewisl.economy.utils.NMS;
 
+
+/**
+ * @author lewis
+ * @since 12/11/2022
+ */
 public class Listeners implements Listener {
     @EventHandler
     public void onInteract(PlayerInteractEvent event) {
@@ -19,26 +24,23 @@ public class Listeners implements Listener {
         ItemStack is = event.getItem();
 
 
+        if (event.getAction() == Action.RIGHT_CLICK_AIR || event.getAction() == Action.RIGHT_CLICK_BLOCK) {
+            if (is != null) {
+                if (is.getType() == Material.PAPER) {
+
+                    String withdrawNote = NMS.getItemNms(is, "withdrawNote");
+                    System.out.println(withdrawNote + " WiThDRAW");
+
+                    if (withdrawNote != null) {
+
+                        long amount = Long.parseLong(withdrawNote);
 
 
-        if(is != null) {
-            if (is.getType() == Material.PAPER) {
-
-                String withdrawNote = NMS.getItemNms(is, "withdrawNote");
-                System.out.println(withdrawNote+" WiThDRAW");
-
-                if (withdrawNote != null) {
-
-                    long amount = Long.parseLong(withdrawNote);
-
-                    if (event.getAction() == Action.RIGHT_CLICK_BLOCK || event.getAction() == Action.RIGHT_CLICK_BLOCK) {
                         Economy.balanceCache.getPlayer(player).add(amount);
-                        player.sendMessage("You have redeemed the note "+amount+" has been added to your balance");
+                        player.sendMessage("You have redeemed the note " + amount + " has been added to your balance");
 
 
-                            player.getInventory().getItemInHand().setAmount(event.getItem().getAmount() -1);
-
-
+                        player.getInventory().getItemInHand().setAmount(event.getItem().getAmount() - 1);
 
 
                         event.setCancelled(true);
@@ -46,12 +48,11 @@ public class Listeners implements Listener {
                     }
                 }
             }
-            }
         }
-
-
-
-
-
-
+    }
 }
+
+
+
+
+

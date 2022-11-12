@@ -2,6 +2,7 @@ moneySettings:
   maxBalance: 999999999
   startingBalance: 5000
   minimumPay: 50
+  baltopShowAmount: 8
 
 mysql:
   host: "localhost"
@@ -26,6 +27,21 @@ sound:
 messages:
   payPlayer: "You have paid %player% %amount%"
   withdraw: "You have withdrew %amount%"
+  balance: "&7Balance: &7%amount%"
+  targetNotProvided: "&cYou have not provided a targeted player"
+  notProvidedAmount: "&cYou have not provided an amount"
+  invalidNumbers: "&cYou have given letters for amount, this can only be numbers"
+  targetNotExist: "&cThe target doesn't exist or isn't online"
+  notEnoughMoney: "&cYou do not have enough money"
+  paymentTooSmall: "&cYour payment is too small, payment must be over %amount%"
+  receivedMoney: "&3%fromPlayer% has given you %amount%"
+  payedPlayer: "&3You have paid %toPlayer% %amount%"
+  noPayYourself: "&cYou can't pay yourself"
+  noInventorySpace: "&cYou do not have enough room in your inventory"
+  minimumWithdrawOver: "&cYour minimum withdraw has to be over %amount%"
+  balTopHeader: "Page: %minPage%/%maxPage% \n"
+  balTopMain: "&7# %rank% %name% - &a %amount% \n"
+  balTopBottom: ""
 
 
 

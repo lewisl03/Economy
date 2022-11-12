@@ -3,6 +3,11 @@ package uk.lewisl.economy.utils;
 import org.bukkit.entity.Player;
 import uk.lewisl.economy.Economy;
 
+
+/**
+ * @author lewis
+ * @since 12/11/2022
+ */
 public class Sound {
     //plays a success sound to the player
     public static void playSuccessSound(Player p) {

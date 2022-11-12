@@ -13,9 +13,15 @@ import uk.lewisl.economy.data.PlayerBalance;
 import uk.lewisl.economy.utils.Maths;
 import uk.lewisl.economy.utils.NMS;
 import uk.lewisl.economy.utils.PlayerUtils;
+import uk.lewisl.economy.utils.Text;
 
 import java.util.ArrayList;
 
+
+/**
+ * @author lewis
+ * @since 12/11/2022
+ */
 public class Withdraw implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
@@ -25,13 +31,13 @@ public class Withdraw implements CommandExecutor {
             PlayerBalance pb = Economy.balanceCache.getPlayer(p);
 
             if(strings.length <= 0){
-                p.sendMessage("You have not provided an amount");
+                p.sendMessage(Text.convertString(Economy.configManager.getConfig().getString("messages.notProvidedAmount")));
                 return true;
             }
 
 
             if(!Maths.isNumeric(strings[0])){
-                p.sendMessage("You have given letters for amount, this can only be numbers");
+                p.sendMessage(Text.convertString(Economy.configManager.getConfig().getString("messages.invalidNumbers")));
                 return true;
             }
 
@@ -41,18 +47,18 @@ public class Withdraw implements CommandExecutor {
 
 
             if(amount < Economy.configManager.getConfig().getLong("moneySettings.minimumPay")){
-                p.sendMessage("Your minimum withdraw has to be over "+ Economy.configManager.getConfig().getLong("moneySettings.minimumPay"));
+                p.sendMessage(Economy.configManager.getConfig().getString("messages.minimumWithdrawOver").replaceAll("%amount%", ""+Maths.longComma(Economy.configManager.getConfig().getLong("moneySettings.minimumPay"))));
                 return true;
             }
 
             if(pb.getPlayerBalance() < amount){
-                p.sendMessage("You do not have enough money");
+                p.sendMessage(Text.convertString(Economy.configManager.getConfig().getString("messages.notEnoughMoney")));
                 return true;
             }
 
 
             if(!PlayerUtils.playerHasSpace(p)){
-                p.sendMessage("You do not have enough room in your inventory");
+                p.sendMessage(Text.convertString(Economy.configManager.getConfig().getString("messages.noInventorySpace")));
                 return true;
             }
 
@@ -62,7 +68,7 @@ public class Withdraw implements CommandExecutor {
                 im.setDisplayName(ChatColor.GOLD+"Withdraw Note");
                 ArrayList<String> lore =  new ArrayList<>();
                 lore.add(ChatColor.WHITE+"Player: "+ p.getDisplayName());
-                lore.add(ChatColor.WHITE+"Amount: "+ amount);
+                lore.add(ChatColor.WHITE+"Amount: "+ Maths.longComma(amount));
                 lore.add(ChatColor.GRAY+"Right click to redeem");
                 im.setLore(lore);
                 is.setItemMeta(im);

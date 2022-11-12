@@ -7,11 +7,16 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import uk.lewisl.economy.Economy;
+import uk.lewisl.economy.data.PlayerBalance;
 
 import java.util.HashSet;
 import java.util.UUID;
 import java.util.logging.Level;
 
+/**
+ * @author lewis
+ * @since 12/11/2022
+ */
 public class BalanceCache implements Listener {
     public HashSet<PlayerBalance> playerBalances = new HashSet<>();
 
@@ -79,10 +84,10 @@ public class BalanceCache implements Listener {
     }
 
     public long getPlayersBalance(Player player){
-        return getPlayer(player).playerBalance;
+        return getPlayer(player).getPlayerBalance();
     }
     public String getPlayersBalanceString(Player player){
-        return String.valueOf(getPlayer(player).playerBalance);
+        return String.valueOf(getPlayer(player).getPlayerBalance());
     }
 
 

@@ -8,7 +8,12 @@ import org.bukkit.entity.Player;
 import uk.lewisl.economy.Economy;
 import uk.lewisl.economy.data.PlayerBalance;
 import uk.lewisl.economy.utils.Maths;
+import uk.lewisl.economy.utils.Text;
 
+/**
+ * @author lewis
+ * @since 12/11/2022
+ */
 public class Pay implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
@@ -18,35 +23,40 @@ public class Pay implements CommandExecutor {
             Player p = ((Player) commandSender);
             PlayerBalance pb = Economy.balanceCache.getPlayer(p);
             if(strings.length <= 0){
-                p.sendMessage("You have not provided a targeted player");
+                p.sendMessage(Text.convertString(Economy.configManager.getConfig().getString("messages.targetNotProvided")));
                 return true;
             }
             else if(strings.length <= 1){
-                p.sendMessage("You have not provided an amount");
+                p.sendMessage(Text.convertString(Economy.configManager.getConfig().getString("messages.notProvidedAmount")));
                 return true;
             }
 
             if(!Maths.isNumeric(strings[1])){
-                p.sendMessage("You have given letters for amount, this can only be numbers");
+                p.sendMessage(Text.convertString(Economy.configManager.getConfig().getString("messages.invalidNumbers")));
                 return true;
             }
 
             Player targetPlayer = Bukkit.getPlayer(strings[0]);
             if(targetPlayer == null){
-                p.sendMessage("The target does not exist");
+                p.sendMessage(Text.convertString(Economy.configManager.getConfig().getString("messages.targetNotExist")));
                 return true;
             }
 
+            if(p.getUniqueId().equals(targetPlayer.getUniqueId())){
+                p.sendMessage(Text.convertString(Economy.configManager.getConfig().getString("messages.noPayYourself")));
+                return true;
+            }
+
+
             long amount = Long.parseLong(strings[1]);
 
-
             if(amount < Economy.configManager.getConfig().getLong("moneySettings.minimumPay")){
-                p.sendMessage("Your payment is too small, payment must be over "+ Economy.configManager.getConfig().getLong("moneySettings.minimumPay"));
+                p.sendMessage(Text.convertString(Economy.configManager.getConfig().getString("messages.paymentTooSmall").replaceAll("%amount%", ""+Maths.longComma(Economy.configManager.getConfig().getLong("moneySettings.minimumPay")))));
                 return true;
             }
 
             if(pb.getPlayerBalance() < amount){
-                p.sendMessage("You do not have enough money");
+                p.sendMessage(Text.convertString(Economy.configManager.getConfig().getString("messages.notEnoughMoney")));
                 return true;
             }
 
@@ -55,8 +65,11 @@ public class Pay implements CommandExecutor {
 
             if(pb.subtract(amount)){
                 targetPb.add(amount);
-                targetPlayer.sendMessage(p.getDisplayName()+" Has sent you "+ amount);
-                p.sendMessage("You have paid, "+ targetPlayer.getDisplayName()+" "+ amount);
+                //receivedMoney
+
+
+                targetPlayer.sendMessage(Text.convertString(Economy.configManager.getConfig().getString("messages.receivedMoney").replaceAll("%fromPlayer%", p.getDisplayName()).replaceAll("%amount%", Maths.longComma(amount)+"")));
+                p.sendMessage(Text.convertString(Economy.configManager.getConfig().getString("messages.payedPlayer").replaceAll("%toPlayer%", p.getDisplayName()).replaceAll("%amount%", Maths.longComma(amount)+"")));
                 return true;
 
             }

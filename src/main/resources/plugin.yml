@@ -5,6 +5,8 @@ api-version: 1.19
 authors: [ storm0chaser ]
 description: Economy plugin
 website: lewisl.uk
+load: STARTUP
+softdepend: [PlaceholderAPI]
 
 commands:
   economy:

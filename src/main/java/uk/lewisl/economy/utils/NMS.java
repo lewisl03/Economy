@@ -3,7 +3,10 @@ package uk.lewisl.economy.utils;
 
 import org.bukkit.craftbukkit.v1_19_R1.inventory.CraftItemStack;
 import org.bukkit.inventory.ItemStack;
-
+/**
+ * @author lewis
+ * @since 12/11/2022
+ */
 public class NMS {
 
     public static ItemStack setItemNms(ItemStack itemStack, String key, String value) {

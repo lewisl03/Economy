@@ -5,9 +5,14 @@ import uk.lewisl.economy.Economy;
 
 import javax.swing.text.Style;
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.UUID;
 import java.util.logging.Level;
 
+/**
+ * @author lewis
+ * @since 12/11/2022
+ */
 public class MySQL {
     private Connection conn = null;
     private PreparedStatement preparedStatement = null;
@@ -99,6 +104,7 @@ public class MySQL {
 
 
 
+
     //shit
 
     public void addPlayer(String playerUUID, long balance){
@@ -120,7 +126,6 @@ public class MySQL {
         long balance = 0;
 
         try {
-
             if(!rs.last()){
                 return null;
             }
@@ -130,12 +135,53 @@ public class MySQL {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
-
-
         return uUID == null ? null : new PlayerBalance(UUID.fromString(uUID), balance);
+    }
+
+    public PlayerBalance[] getTopPlayers(int amount, int offset) {
+        sql = "SELECT UUID, Balance\n" +
+                "FROM PlayerBalance\n" +
+                "ORDER BY Balance DESC\n" +
+                "LIMIT " +offset+", "+ amount;
+
+        ResultSet rs = executeQuery(sql);
+
+        PlayerBalance[] topBalances = new PlayerBalance[amount];
+        int i = 0;
+
+        try {
+            while (rs.next()) {
+                String uUID = rs.getString("UUID");
+                long balance = rs.getLong("Balance");
+
+                topBalances[i] = new PlayerBalance(UUID.fromString(uUID), balance);
+                i++;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return topBalances;
+    }
+
+    public int dbCount(){
+        String sql = "SELECT count(*) FROM PlayerBalance";
+        ResultSet rs = executeQuery(sql);
+        int amount = 0;
+        if(rs != null){
+            try {
+                rs.last();
+                amount = rs.getInt("count(*)");
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return amount;
 
     }
+
+
+
 
     public void savePlayer(PlayerBalance p){
         sql = "DELETE FROM `PlayerBalance` WHERE UUID='"+p.getPlayerUUID()+"';";
