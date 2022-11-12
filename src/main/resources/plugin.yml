@@ -1,0 +1,24 @@
+name: Economy
+version: '${project.version}'
+main: uk.lewisl.economy.Economy
+api-version: 1.19
+authors: [ storm0chaser ]
+description: Economy plugin
+website: lewisl.uk
+
+commands:
+  economy:
+    description: Main economy command
+    usage: /<command>
+  pay:
+    description: command used to pay someone
+    usage: /<command>
+  bal:
+    description: command used to check your balance
+    usage: /<command>
+  withdraw:
+    description: command used to withdraw money from your balance
+    usage: /<command>
+  baltop:
+    description: command used to see who has the highest balance
+    usage: /<command>
