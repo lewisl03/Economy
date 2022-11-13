@@ -46,7 +46,7 @@ public class BalTop implements CommandExecutor {
             }
             message += Text.convertString(Economy.configManager.getConfig().getString("messages.balTopBottom"));
             commandSender.sendMessage(message);
-            
+
             return;
         }
 

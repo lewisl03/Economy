@@ -8,6 +8,7 @@ import org.bukkit.entity.Player;
 import uk.lewisl.economy.Economy;
 import uk.lewisl.economy.data.PlayerBalance;
 import uk.lewisl.economy.utils.Maths;
+import uk.lewisl.economy.utils.Sound;
 import uk.lewisl.economy.utils.Text;
 
 /**
@@ -70,6 +71,7 @@ public class Pay implements CommandExecutor {
 
                 targetPlayer.sendMessage(Text.convertString(Economy.configManager.getConfig().getString("messages.receivedMoney").replaceAll("%fromPlayer%", p.getDisplayName()).replaceAll("%amount%", Maths.longComma(amount)+"")));
                 p.sendMessage(Text.convertString(Economy.configManager.getConfig().getString("messages.payedPlayer").replaceAll("%toPlayer%", p.getDisplayName()).replaceAll("%amount%", Maths.longComma(amount)+"")));
+                Sound.playSuccessSound(p);
                 return true;
 
             }

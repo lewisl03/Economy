@@ -12,15 +12,21 @@ commands:
   economy:
     description: Main economy command
     usage: /<command>
+    aliases:
+      - eco
   pay:
     description: command used to pay someone
     usage: /<command>
   bal:
     description: command used to check your balance
     usage: /<command>
+    aliases:
+      - balance
   withdraw:
     description: command used to withdraw money from your balance
     usage: /<command>
   baltop:
     description: command used to see who has the highest balance
     usage: /<command>
+    aliases:
+      - balancetop

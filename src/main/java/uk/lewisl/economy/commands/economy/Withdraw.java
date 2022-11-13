@@ -5,15 +5,13 @@ import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import uk.lewisl.economy.Economy;
 import uk.lewisl.economy.data.PlayerBalance;
-import uk.lewisl.economy.utils.Maths;
-import uk.lewisl.economy.utils.NMS;
-import uk.lewisl.economy.utils.PlayerUtils;
-import uk.lewisl.economy.utils.Text;
+import uk.lewisl.economy.utils.*;
 
 import java.util.ArrayList;
 
@@ -73,11 +71,12 @@ public class Withdraw implements CommandExecutor {
                 im.setLore(lore);
                 is.setItemMeta(im);
 
+
                 is = NMS.setItemNms(is, "withdrawNote", String.valueOf(amount));
                 p.getInventory().addItem(is);
 
                 p.sendMessage("You have withdrew "+ amount);
-
+                Sound.playSuccessSound(p);
                 return true;
 
             }
