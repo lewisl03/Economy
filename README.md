@@ -14,23 +14,13 @@ This is an Economy Plugin for Minecraft that utilizes MySQL for efficient manage
 - Displays the highest balance holders with `/baltop` command
 
 ## ToDo
-- Mysql storage
-- Async process tasks
-- Faction fly
-- Faction land claiming
-- Faction shields
-- Damage cooldown / Combat tag
-- Piston into territory check
-- Faction warps
-- Scoreboard
-- Chat system
-- Faction grace system
 
-## Installation
+- Tidy code
+- customisable messages
+- update api side
 
 ### Prerequisites
 
-- Your server should have [Plugin Manager] installed.
 - Ensure the server is compatible with [Platform/Environment] (e.g., Spigot, Bukkit, etc.).
 
 ### Steps
