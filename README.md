@@ -54,8 +54,8 @@ This is an Economy Plugin for Minecraft that utilizes MySQL for efficient manage
 
 To build the plugin from source, follow these steps:
 
-1. Clone the repository: `git clone https://github.com/lewisl03/EconomyPlugin.git`.
-2. Navigate to the project directory: `cd EconomyPlugin`.
+1. Clone the repository: `git clone https://github.com/lewisl03/Economy.git`.
+2. Navigate to the project directory: `cd Economy`.
 3. Build the project using your build tool of choice (e.g., Maven, Gradle).
 
 ### Contributing
