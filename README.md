@@ -1,58 +1,84 @@
-# MySQL Economy Plugin README
+# Economy Plugin
 
-## Description
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
-This is an Economy Plugin for Minecraft that utilizes MySQL for managing in-game currency and transactions.
+## Overview
 
-## Commands
+This is an Economy Plugin for Minecraft that utilizes MySQL for efficient management of in-game currency and transactions.
 
-### /economy or /eco
-- **Description:** Main economy command
-- **Usage:** /economy
-- **Aliases:**
-  - eco
+## Features
 
-### /pay
-- **Description:** Command used to pay someone
-- **Usage:** /pay <amount> <player>
+- Manages in-game economy using MySQL database
+- Allows players to pay each other in-game currency
+- Provides commands to check balance and withdraw money
+- Displays the highest balance holders with `/baltop` command
 
-### /bal or /balance
-- **Description:** Command used to check your balance
-- **Usage:** /bal
-- **Aliases:**
-  - balance
+## ToDo
+- Mysql storage
+- Async process tasks
+- Faction fly
+- Faction land claiming
+- Faction shields
+- Damage cooldown / Combat tag
+- Piston into territory check
+- Faction warps
+- Scoreboard
+- Chat system
+- Faction grace system
 
-### /withdraw
-- **Description:** Command used to withdraw money from your balance
-- **Usage:** /withdraw <amount>
+## Installation
 
-### /baltop or /balancetop
-- **Description:** Command used to see who has the highest balance
-- **Usage:** /baltop
-- **Aliases:**
-  - balancetop
+### Prerequisites
 
-## MySQL Configuration
+- Your server should have [Plugin Manager] installed.
+- Ensure the server is compatible with [Platform/Environment] (e.g., Spigot, Bukkit, etc.).
 
-This plugin utilizes MySQL for storing and managing the economy data. Ensure you have a MySQL server set up with the required database and credentials.
+### Steps
 
-1. Configure MySQL settings in the plugin's configuration file.
+1. Download the latest release from the [releases page](https://github.com/lewisl03/EconomyPlugin/releases).
+2. Place the downloaded JAR file into the `plugins` directory of your server.
+3. Start or restart your server to load the plugin.
 
-```yaml
-mysql:
-  host: <MySQL Host>
-  port: <MySQL Port>
-  database: <Database Name>
-  username: <MySQL Username>
-  password: <MySQL Password>
-```
+## Usage
 
-## How to Use
+### Configuration
 
-1. Set up the MySQL configuration in the plugin's configuration file.
-2. Use the respective commands to manage your in-game currency and transactions.
-3. View the highest balances using the `/baltop` command.
-4. Transfer funds to other players using the `/pay` command.
-5. Check your balance using the `/bal` or `/balance` command.
+- Configure the MySQL settings in the plugin's `config.yml` file.
 
-Feel free to contribute, report issues, or suggest improvements on our GitHub repository. Happy gaming!
+### Commands
+
+- `/economy` or `/eco`: Main economy command.
+- `/pay <amount> <player>`: Pay a specific amount to another player.
+- `/bal` or `/balance`: Check your in-game currency balance.
+- `/withdraw <amount>`: Withdraw money from your balance.
+- `/baltop` or `/balancetop`: See the players with the highest balance.
+
+### Permissions
+- `economy.*`: Grants access to all plugin commands.
+- `economy.default`: Grants access to all default commands.
+- `economy.admin`: Grants access to all admin commands.
+
+## Development
+
+### Build from Source
+
+To build the plugin from source, follow these steps:
+
+1. Clone the repository: `git clone https://github.com/lewisl03/EconomyPlugin.git`.
+2. Navigate to the project directory: `cd EconomyPlugin`.
+3. Build the project using your build tool of choice (e.g., Maven, Gradle).
+
+### Contributing
+
+1. Fork the repository and create a new branch: `git checkout -b feature/new-feature`.
+2. Make your changes and commit them: `git commit -m 'Add new feature'`.
+3. Push to the branch: `git push origin feature/new-feature`.
+4. Submit a pull request detailing your changes.
+
+## License
+
+This project is licensed under the [MIT License](LICENSE).
+
+## Acknowledgments
+
+- Mention any external libraries, tutorials, or references you used.
